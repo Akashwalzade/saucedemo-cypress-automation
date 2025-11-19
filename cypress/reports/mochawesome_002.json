@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-18T09:45:29.609Z",
+    "end": "2025-11-18T09:45:35.223Z",
+    "duration": 5614,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d26fef24-109e-443f-b1c2-848a336feb73",
+      "title": "",
+      "fullFile": "cypress/e2e/checkout.cy.js",
+      "file": "cypress/e2e/checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2e93c9fe-0e07-4227-bed9-81f6de5830c5",
+          "title": "select randome three random intem and add to cart them",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Select 3 random items and complete checkout",
+              "fullTitle": "select randome three random intem and add to cart them Select 3 random items and complete checkout",
+              "timedOut": null,
+              "duration": 3367,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// login in to the page\ncy.visit('https://www.saucedemo.com/');\ncy.get('[id=\"user-name\"]').type('standard_user');\ncy.get('#password').type('secret_sauce');\ncy.get('#login-button').click();\ncy.url().should('contain', 'inventory.html');\n// select random three character\ncy.get('[class=\"inventory_item\"]').then(items => {\n  let total = items.length;\n  if (total < 3) throw new error(\"not enough product\");\n  const randomitems = [];\n  while (randomitems.length < 3) {\n    const r = Math.floor(Math.random() * total);\n    if (!randomitems.includes(r)) {\n      randomitems.push(r);\n    }\n  }\n  randomitems.forEach(i => {\n    cy.wrap(items[i]).find('button').click();\n  });\n});\n// checkout of the items\ncy.get('[class=\"shopping_cart_badge\"]').should('contain', '3');\ncy.get('[class=\"shopping_cart_link\"]').click();\ncy.get('[class=\"cart_item\"]').should('have.length', 3);\n// checkout\ncy.get('[id=\"checkout\"]').click();\ncy.get('[id=\"first-name\"]').type('tanmay');\ncy.get('[id=\"last-name\"]').type('walz');\ncy.get('[id=\"postal-code\"]').type('412101');\ncy.get('[id=\"continue\"]').click();\ncy.get('[id=\"finish\"]').click();\ncy.get('[class=\"complete-header\"]').should('have.text', 'Thank you for your order!');",
+              "err": {},
+              "uuid": "3c5bb893-a443-4f07-a5aa-0a9c78c71258",
+              "parentUUID": "2e93c9fe-0e07-4227-bed9-81f6de5830c5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3c5bb893-a443-4f07-a5aa-0a9c78c71258"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3367,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

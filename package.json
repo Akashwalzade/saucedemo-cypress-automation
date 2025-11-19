@@ -1,0 +1,25 @@
+{
+  "name": "sauce_demo_cypress",
+  "version": "1.0.0",
+  "private": true,
+
+  "scripts": {
+  "test": "cypress run",
+
+  "clean:report": "rm -f cypress/reports/merged.json",
+
+  "merge:report": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/merged.json",
+
+  "generate:report": "marge cypress/reports/merged.json --reportDir cypress/reports",
+
+  "report": "npm run clean:report && npm test && npm run merge:report && npm run generate:report"
+}
+,
+
+  "devDependencies": {
+    "cypress": "^14.5.4",
+    "marge": "^1.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.4.1"
+  }
+}
